@@ -1,0 +1,6 @@
+c:\users\eric\documents\visual studio 2015\Projects\StackMaze\StackMaze\bin\Debug\StackMaze.exe.config
+C:\Users\Eric\documents\visual studio 2015\Projects\StackMaze\StackMaze\bin\Debug\StackMaze.exe
+C:\Users\Eric\documents\visual studio 2015\Projects\StackMaze\StackMaze\bin\Debug\StackMaze.pdb
+C:\Users\Eric\documents\visual studio 2015\Projects\StackMaze\StackMaze\obj\Debug\StackMaze.exe
+C:\Users\Eric\documents\visual studio 2015\Projects\StackMaze\StackMaze\obj\Debug\StackMaze.pdb
+C:\Users\Eric\Documents\Visual Studio 2015\Projects\StackMaze\StackMaze\obj\Debug\StackMaze.csprojResolveAssemblyReference.cache
