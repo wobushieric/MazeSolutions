@@ -30,7 +30,7 @@ namespace StackMaze
                 }
             }
 
-            DepthFirst depthFirst = new DepthFirst(newMaze);
+            /*DepthFirst depthFirst = new DepthFirst(newMaze);
 
             depthFirst.StartPoint = new Point(Int32.Parse(startPoint[0]), Int32.Parse(startPoint[1]));
 
@@ -54,6 +54,19 @@ namespace StackMaze
             else
             {
                 Console.Write(depthFirst.NoExit());
+            }
+
+            Console.ReadLine();*/
+
+            BreadthFirst breadthFirst = new BreadthFirst(newMaze);
+
+            if (breadthFirst.BreathFirstSearch(1, 1))
+            {
+                Console.WriteLine(breadthFirst.ExitFound());
+            }
+            else
+            {
+                Console.WriteLine("No Exit");
             }
 
             Console.ReadLine();
