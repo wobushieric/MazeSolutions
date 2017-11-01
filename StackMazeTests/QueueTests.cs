@@ -83,7 +83,42 @@ namespace StackMaze.Tests
         [Test()]
         public void DequeueTestWithException()
         {
-            Assert.Fail();
+            Queue<string> queue = new Queue<string>();
+
+            try
+            {
+                queue.Dequeue();
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("No such element", e.Message);
+            }
+        }
+
+        [Test()]
+        public void DequeueTestWithSizeOneQueue()
+        {
+            Queue<string> queue = new Queue<string>();
+
+            queue.Enqueue("a");
+
+            Assert.AreEqual("a", queue.Dequeue());
+            Assert.AreEqual(true, queue.IsEmpty());
+            Assert.AreEqual(0, queue.GetSize());
+        }
+
+        [Test()]
+        public void DequeueTestWithQueueSizeGreaterThanOne()
+        {
+            Queue<string> queue = new Queue<string>();
+
+            queue.Enqueue("a");
+            queue.Enqueue("b");
+
+            Assert.AreEqual("a", queue.Dequeue());
+            Assert.AreEqual(false, queue.IsEmpty());
+            Assert.AreEqual(1, queue.GetSize());
+            Assert.AreEqual("b", queue.Front());
         }
     }
 }
