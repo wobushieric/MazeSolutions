@@ -18,7 +18,7 @@ namespace StackMaze
         public ArrayList PointTracker;
         public Point StartPoint { get; set; }
         public int StepsCounter { get; private set; }
-        public LinkedList<Point> path;
+        public LinkedList<Point> Path;
 
         public BreadthFirst(char[,] maze)
         {
@@ -26,14 +26,12 @@ namespace StackMaze
             this.queue = new Queue<Point>();
             this.MazeSearched = false;
             this.PointTracker = new ArrayList();
-            this.path = new LinkedList<Point>();
+            this.Path = new LinkedList<Point>();
         }
 
         public bool BreathFirstSearch(int row, int column, int parentRow, int parentColumn)
         {
             this.MazeSearched = true;
-
-            bool foundExit = false;
 
             do
             {
@@ -41,7 +39,9 @@ namespace StackMaze
                 {
                     this.PointTracker.Add(new Point(row, column, parentRow, parentColumn));
 
-                    foundExit = true;
+                    this.queue.Enqueue(new Point(row, column, parentRow, parentColumn));
+
+                    return true;
                 }
                 else if (this.maze[row, column] != this.visitedMarker)
                 {
@@ -77,16 +77,17 @@ namespace StackMaze
                 if (!this.queue.IsEmpty())
                 { 
                     Point oldHead = this.queue.Dequeue();
-
                     row = oldHead.Row;
                     column = oldHead.Column;
                     parentRow = oldHead.ParentRow;
                     parentColumn = oldHead.ParentColumn;
                 }
+                else
+                {
+                    return false;
+                }
 
-            } while (!foundExit || this.queue.IsEmpty());
-
-            return foundExit;
+            } while (true);
         }
 
         public void CheckSearch()
@@ -127,7 +128,7 @@ namespace StackMaze
                     {
                         exitPath = exitPath.Insert(0, pathPoint + "\n");
 
-                        path.AddFirst(pathPoint);
+                        this.Path.AddFirst(pathPoint);
 
                         pathPoint = new Point(point.ParentRow, point.ParentColumn);
 
@@ -138,7 +139,7 @@ namespace StackMaze
 
             exitPath = exitPath.Insert(0, StartPoint + "\n");
 
-            path.AddFirst(StartPoint);
+            this.Path.AddFirst(StartPoint);
 
             this.StepsCounter++;
 
@@ -147,7 +148,34 @@ namespace StackMaze
 
         public string DumpMaze()
         {
-            return "";
+            CheckSearch();
+
+            string mazeString = "";
+
+            if (this.Path.Count > 0)
+            {
+                int steps = this.Path.Count;
+
+                for (int i = 0; i < steps; i++)
+                {
+                    this.maze[this.Path.First.Value.Row, this.Path.First.Value.Column] = '.';
+                    this.Path.RemoveFirst();
+                }
+            }
+
+            int rowLength = this.maze.GetLength(0);
+            int colLength = this.maze.GetLength(1);
+
+            for (int i = 0; i < rowLength; i++)
+            {
+                for (int j = 0; j < colLength; j++)
+                {
+                    mazeString += maze[i, j];
+                }
+                mazeString += "\n";
+            }
+
+            return mazeString;
         }
     }
 }

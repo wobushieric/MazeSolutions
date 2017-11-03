@@ -75,9 +75,7 @@ namespace StackMaze
                 throw new NullReferenceException("No such element");
             }
             
-            Node<T> headCopy = (Node<T>)this.Head.Clone();
-
-            T headElementCopy = headCopy.Element;
+            T headElementCopy = Head.Element;
 
             if (this.Size == 1)
             {

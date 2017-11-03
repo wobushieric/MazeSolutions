@@ -70,25 +70,25 @@ namespace StackMaze
                 string pathToFollow = breadthFirst.PathToFollow();
                 Console.WriteLine(breadthFirst.ExitFound() + " - " + breadthFirst.StepsCounter + " steps:");
                 Console.WriteLine(pathToFollow);
+                Console.WriteLine(breadthFirst.DumpMaze());
             }
             else
             {
                 Console.WriteLine("No Exit");
-            }
 
-            string mazeString = "";
+                string mazeString = "";
 
-            for (int i = 0; i < 11; i++)
-            {
-                for (int j = 0; j < 13; j++)
+                for (int i = 0; i < 11; i++)
                 {
-                    mazeString += newMaze[i, j];
-                    
+                    for (int j = 0; j < 13; j++)
+                    {
+                        mazeString += newMaze[i, j];
+                    }
+                    mazeString += "\n";
                 }
-                mazeString += "\n";
-            }
 
-            Console.WriteLine(mazeString);
+                Console.WriteLine(mazeString);
+            }
 
             Console.ReadLine();
         }
