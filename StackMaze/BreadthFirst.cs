@@ -10,11 +10,11 @@ namespace StackMaze
     public class BreadthFirst
     {
         private char[,] maze;
-        public Queue<Point> queue;
+        public Queue<Point> Queue;
         private char visitedMarker = 'V';
         private char exitMarker = 'E';
         private char hallMarker = ' ';
-        private bool MazeSearched;
+        private bool _mazeSearched;
         public ArrayList PointTracker;
         public Point StartPoint { get; set; }
         public int StepsCounter { get; private set; }
@@ -23,15 +23,15 @@ namespace StackMaze
         public BreadthFirst(char[,] maze)
         {
             this.maze = maze;
-            this.queue = new Queue<Point>();
-            this.MazeSearched = false;
+            this.Queue = new Queue<Point>();
+            this._mazeSearched = false;
             this.PointTracker = new ArrayList();
             this.Path = new LinkedList<Point>();
         }
 
         public bool BreathFirstSearch(int row, int column, int parentRow, int parentColumn)
         {
-            this.MazeSearched = true;
+            this._mazeSearched = true;
 
             do
             {
@@ -39,7 +39,7 @@ namespace StackMaze
                 {
                     this.PointTracker.Add(new Point(row, column, parentRow, parentColumn));
 
-                    this.queue.Enqueue(new Point(row, column, parentRow, parentColumn));
+                    this.Queue.Enqueue(new Point(row, column, parentRow, parentColumn));
 
                     return true;
                 }
@@ -53,30 +53,30 @@ namespace StackMaze
                 if (this.maze[row + 1, column] == this.hallMarker ||
                     this.maze[row + 1, column] == this.exitMarker)
                 {
-                    this.queue.Enqueue(new Point(row + 1, column, row, column));
+                    this.Queue.Enqueue(new Point(row + 1, column, row, column));
                 }
 
                 if (this.maze[row, column + 1] == this.hallMarker ||
                     this.maze[row, column + 1] == this.exitMarker)
                 {
-                    this.queue.Enqueue(new Point(row, column + 1, row, column));
+                    this.Queue.Enqueue(new Point(row, column + 1, row, column));
                 }
 
                 if (this.maze[row, column - 1] == this.hallMarker ||
                     this.maze[row, column - 1] == this.exitMarker)
                 {
-                    this.queue.Enqueue(new Point(row, column - 1, row, column));
+                    this.Queue.Enqueue(new Point(row, column - 1, row, column));
                 }
 
                 if (this.maze[row - 1, column] == this.hallMarker ||
                     this.maze[row - 1, column] == this.exitMarker)
                 {
-                    this.queue.Enqueue(new Point(row - 1, column, row, column));
+                    this.Queue.Enqueue(new Point(row - 1, column, row, column));
                 }
 
-                if (!this.queue.IsEmpty())
+                if (!this.Queue.IsEmpty())
                 { 
-                    Point oldHead = this.queue.Dequeue();
+                    Point oldHead = this.Queue.Dequeue();
                     row = oldHead.Row;
                     column = oldHead.Column;
                     parentRow = oldHead.ParentRow;
@@ -92,7 +92,7 @@ namespace StackMaze
 
         public void CheckSearch()
         {
-            if (!this.MazeSearched)
+            if (!this._mazeSearched)
             {
                 throw new Exception("IllegalStateException");
             }
@@ -107,14 +107,14 @@ namespace StackMaze
 
         public string ExitFound()
         {
-            return "Path to follow from Start " + this.StartPoint + " to Exit " + this.queue.Front();
+            return "Path to follow from Start " + this.StartPoint + " to Exit " + this.Queue.Front();
         }
 
         public string PathToFollow()
         {
             CheckSearch();
 
-            Point pathPoint = this.queue.Front();
+            Point pathPoint = this.Queue.Front();
 
             this.StepsCounter = 0;
 

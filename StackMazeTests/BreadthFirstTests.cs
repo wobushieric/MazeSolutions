@@ -14,7 +14,7 @@ namespace StackMaze.Tests
         [Test()]
         public void CheckSearchTestWithException()
         {
-            char[,] ExitableMaze = {
+            char[,] exitableMaze = {
                 {'W', 'W', 'W'},
                 {'W', ' ', 'W'},
                 {'W', ' ', 'W'},
@@ -22,7 +22,7 @@ namespace StackMaze.Tests
                 {'W', 'W', 'W'}
             };
 
-            BreadthFirst breadthFirst = new BreadthFirst(ExitableMaze);
+            BreadthFirst breadthFirst = new BreadthFirst(exitableMaze);
 
             try
             {
@@ -37,7 +37,7 @@ namespace StackMaze.Tests
         [Test()]
         public void NoExitTest()
         {
-            char[,] NoExitMaze = {
+            char[,] noExitMaze = {
                 {'W', 'W', 'W'},
                 {'W', ' ', 'W'},
                 {'W', ' ', 'W'},
@@ -45,7 +45,7 @@ namespace StackMaze.Tests
                 {'W', 'W', 'W'}
             };
 
-            BreadthFirst breadthFirst = new BreadthFirst(NoExitMaze);
+            BreadthFirst breadthFirst = new BreadthFirst(noExitMaze);
 
             Assert.AreEqual(false, breadthFirst.BreathFirstSearch(1, 1, 1, 1));
         }
@@ -53,7 +53,7 @@ namespace StackMaze.Tests
         [Test()]
         public void ExitFoundTest()
         {
-            char[,] ExitableMaze = {
+            char[,] exitableMaze = {
                 {'W', 'W', 'W'},
                 {'W', ' ', 'W'},
                 {'W', ' ', 'W'},
@@ -61,7 +61,7 @@ namespace StackMaze.Tests
                 {'W', 'W', 'W'}
             };
 
-            BreadthFirst breadthFirst = new BreadthFirst(ExitableMaze);
+            BreadthFirst breadthFirst = new BreadthFirst(exitableMaze);
 
             breadthFirst.StartPoint = new Point(1, 1, 1, 1);
 
@@ -75,7 +75,7 @@ namespace StackMaze.Tests
         [Test()]
         public void PathToFollowTest()
         {
-            char[,] ExitableMaze = {
+            char[,] exitableMaze = {
                 {'W', 'W', 'W'},
                 {'W', ' ', 'W'},
                 {'W', ' ', 'W'},
@@ -83,7 +83,7 @@ namespace StackMaze.Tests
                 {'W', 'W', 'W'}
             };
 
-            BreadthFirst breadthFirst = new BreadthFirst(ExitableMaze);
+            BreadthFirst breadthFirst = new BreadthFirst(exitableMaze);
 
             breadthFirst.StartPoint = new Point(1, 1, 1, 1);
 
@@ -97,7 +97,7 @@ namespace StackMaze.Tests
         [Test()]
         public void DumpMazeTest()
         {
-            char[,] ExitableMaze = {
+            char[,] exitableMaze = {
                 {'W', 'W', 'W'},
                 {'W', ' ', 'W'},
                 {'W', ' ', 'W'},
@@ -105,7 +105,7 @@ namespace StackMaze.Tests
                 {'W', 'W', 'W'}
             };
 
-            BreadthFirst breadthFirst = new BreadthFirst(ExitableMaze);
+            BreadthFirst breadthFirst = new BreadthFirst(exitableMaze);
 
             breadthFirst.StartPoint = new Point(1, 1, 1, 1);
 
@@ -121,7 +121,7 @@ namespace StackMaze.Tests
         [Test()]
         public void BreathFirstSearchTestNoExit()
         {
-            char[,] NoExitMaze = {
+            char[,] noExitMaze = {
                 {'W', 'W', 'W'},
                 {'W', ' ', 'W'},
                 {'W', ' ', 'W'},
@@ -129,7 +129,7 @@ namespace StackMaze.Tests
                 {'W', 'W', 'W'}
             };
 
-            BreadthFirst breadthFirst = new BreadthFirst(NoExitMaze);
+            BreadthFirst breadthFirst = new BreadthFirst(noExitMaze);
 
             Assert.AreEqual(false, breadthFirst.BreathFirstSearch(1, 1, 1, 1));
         }
@@ -137,7 +137,7 @@ namespace StackMaze.Tests
         [Test()]
         public void BreathFirstSearchTestExitable()
         {
-            char[,] ExitableMaze = {
+            char[,] exitableMaze = {
                 {'W', 'W', 'W'},
                 {'W', ' ', 'W'},
                 {'W', ' ', 'W'},
@@ -145,7 +145,7 @@ namespace StackMaze.Tests
                 {'W', 'W', 'W'}
             };
 
-            BreadthFirst breadthFirst = new BreadthFirst(ExitableMaze);
+            BreadthFirst breadthFirst = new BreadthFirst(exitableMaze);
 
             Assert.AreEqual(true, breadthFirst.BreathFirstSearch(1, 1, 1, 1));
         }
