@@ -60,14 +60,35 @@ namespace StackMaze
 
             BreadthFirst breadthFirst = new BreadthFirst(newMaze);
 
-            if (breadthFirst.BreathFirstSearch(1, 1))
+            breadthFirst.StartPoint = new Point(Int32.Parse(startPoint[0]), Int32.Parse(startPoint[1]));
+
+            if (breadthFirst.BreathFirstSearch(breadthFirst.StartPoint.Row, 
+                                               breadthFirst.StartPoint.Column,
+                                               breadthFirst.StartPoint.Row,
+                                               breadthFirst.StartPoint.Column))
             {
-                Console.WriteLine(breadthFirst.ExitFound());
+                string pathToFollow = breadthFirst.PathToFollow();
+                Console.WriteLine(breadthFirst.ExitFound() + " - " + breadthFirst.StepsCounter + " steps:");
+                Console.WriteLine(pathToFollow);
             }
             else
             {
                 Console.WriteLine("No Exit");
             }
+
+            string mazeString = "";
+
+            for (int i = 0; i < 11; i++)
+            {
+                for (int j = 0; j < 13; j++)
+                {
+                    mazeString += newMaze[i, j];
+                    
+                }
+                mazeString += "\n";
+            }
+
+            Console.WriteLine(mazeString);
 
             Console.ReadLine();
         }
